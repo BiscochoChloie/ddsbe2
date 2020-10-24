@@ -1,6 +1,6 @@
 <?php
  
-namespace App\Model;
+namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
  
@@ -10,8 +10,10 @@ class User extends Model{
     
     // column sa table 
     protected $fillable = [
-    'username', 'passowrd'
+    'username', 'password'
 
  ];
+    public $timestamps=false;
+    protected $primaryKey = 'id';
  }
 ?>

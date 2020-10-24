@@ -19,3 +19,16 @@ $router->get('/', function () use ($router) {
 
 
 $router->get('/users',['uses' => 'UserController@getUsers']);
+
+$router->get('/login', 'UserController@Login');
+$router->post('/home', 'UserController@test');
+    
+$router->get('/', 'UserController@index');
+    
+$router->post('users/', 'UserController@create');
+
+$router->get('/users/{id}', 'UserController@read');
+
+$router->put('/users/{id}', 'UserController@update');
+
+$router->delete('/users/{id}', 'UserController@destroy');
