@@ -21,6 +21,7 @@ $router->get('/', function () use ($router) {
 $router->get('/users',['uses' => 'UserController@getUsers']);
 
 $router->get('/login', 'UserController@Login');
+
 $router->post('/home', 'UserController@test');
     
 $router->get('/', 'UserController@index');

@@ -12,6 +12,7 @@
         protected function errorResponse($message,$code)
         {
             return response()->json(['error'=>$message,'site'=> 1,'code'=>$code],$code);
+            
         }
     }
 ?>
