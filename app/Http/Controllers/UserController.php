@@ -35,8 +35,7 @@ Class UserController extends Controller {
             return 'Invalid credentials!';
         }else{
             return 'Successfully Log-In!';
-        }
-        
+        }   
     }
     
     public function index()
@@ -72,7 +71,7 @@ Class UserController extends Controller {
          ]);
         $users = User::find($id);
         if($users->fill($request->all())->save()){
-            
+
             return $this->successResponse(['status' => 'success',$users]);
         }
 
