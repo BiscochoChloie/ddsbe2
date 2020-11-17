@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
+    use Illuminate\Http\Response; 
     use App\Models\User;
     use App\Traits\ApiResponser;
 
@@ -54,13 +55,13 @@ Class UserController extends Controller {
 
         $users = User::create($request->all());
 
-        return response()->json(['status' => 'successfully added!','result' =>$users]);
+        return $this->successResponse($users, Response::HTTP_CREATED);
     }
 
     public function read($id)
     {
         $users = User::find($id);
-        return response()->json($users);
+        return $this->successResponse($users);
     }
 
     public function update(Request $request, $id)
@@ -71,15 +72,15 @@ Class UserController extends Controller {
          ]);
         $users = User::find($id);
         if($users->fill($request->all())->save()){
-           return response()->json(['status' => 'success','result' =>$users]);
+            return $this->successResponse(['status' => 'success',$users]);
         }
-        return response()->json(['status' => 'failed','result' =>$users]);
+        return $this->errorResponse(['status' => 'failed','result' =>$users]);
     }
 
     public function destroy($id)
     {
-        $users = User::find($id);
+        $users = User::findOrFail($id);
         $users->delete();
-        return response()->json('Deleted successfully!');
+        return $this->successResponse(['Deleted successfully!',$users]);
     }
 }
