@@ -41,7 +41,7 @@ Class UserController extends Controller {
     public function index()
     {
     $users = User::all();
-    return response()->json($users);
+    return $this->successResponse($users);
     }
 
     public function create(Request $request ){

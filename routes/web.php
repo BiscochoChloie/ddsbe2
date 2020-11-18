@@ -26,7 +26,7 @@ $router->get('/login', 'UserController@Login');
 
 $router->post('/home', 'UserController@test');
     
-$router->get('/', 'UserController@index');
+$router->get('/users', 'UserController@index');
     
 $router->post('users/', 'UserController@create');
 
