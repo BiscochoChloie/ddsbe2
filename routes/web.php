@@ -35,3 +35,8 @@ $router->get('/users/{id}', 'UserController@read');
 $router->put('/users/{id}', 'UserController@update');
 
 $router->delete('/users/{id}', 'UserController@destroy');
+
+
+$router->get('/usersjob','UserJobController@index');
+
+$router->get('/usersjob/{id}','UserJobController@show'); // get user by id

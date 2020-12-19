@@ -1,6 +1,8 @@
 <?php
 
     namespace App\Http\Controllers;
+
+    use App\Models\UserJob;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response; 
     use App\Models\User;
@@ -47,10 +49,16 @@ Class UserController extends Controller {
     public function create(Request $request ){
         $rules = [
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:8',
+            'email' =>'required|email|unique:users,email',
+            'jobid' => 'required|numeric|min:1|not_in:0',
         ];
 
         $this->validate($request,$rules);
+
+        // validate if Jobid is found in the table tbluserjob
+
+        $userjob =UserJob::findOrFail($request->jobId);
 
         $users = User::create($request->all());
 
@@ -68,8 +76,16 @@ Class UserController extends Controller {
         $this->validate($request, [
         'username' => 'filled',
         'password' => 'filled',
+        'email' => 'filled',
+        'jobid' => 'required|numeric|min:1|not_in:0',
+
          ]);
+        // validate if Jobid is found in the table tbluserjob
+ 
+        $userjob = UserJob::findOrFail($request->jobId);
+
         $users = User::find($id);
+
         if($users->fill($request->all())->save()){
 
             return $this->successResponse(['status' => 'success',$users]);

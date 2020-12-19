@@ -10,7 +10,7 @@ class User extends Model{
     
     // column sa table 
     protected $fillable = [
-    'username', 'password'
+    'username', 'password','email'
 
  ];
     public $timestamps=false;
